@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular.io-example": {
+    "yross-angular-ecommerce": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,11 +13,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/yross-angular-ecommerce",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -49,6 +50,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -57,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular.io-example:build"
+            "browserTarget": "yross-angular-ecommerce:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular.io-example:build:production"
+              "browserTarget": "yross-angular-ecommerce:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular.io-example:build"
+            "browserTarget": "yross-angular-ecommerce:build"
           }
         },
         "test": {
@@ -105,16 +111,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular.io-example:serve"
+            "devServerTarget": "yross-angular-ecommerce:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular.io-example:serve:production"
+              "devServerTarget": "yross-angular-ecommerce:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "angular.io-example"
+    }},
+  "defaultProject": "yross-angular-ecommerce"
 }

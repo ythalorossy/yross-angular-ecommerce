@@ -6,38 +6,40 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { TopBarComponent } from "./top-bar/top-bar.component";
-import { ProductListComponent } from "./product-list/product-list.component";
-import { ProductAlertsComponent } from "./product-alerts/product-alerts.component";
 import { ProductDetailsComponent } from "./product-details/product-details.component";
-import { CartService } from "./cart.service";
-import { CartComponent } from "./cart/cart.component";
 import { ShippingComponent } from './shipping/shipping.component';
+
+import { CartService } from "./_services/cart.service";
+
+import { AdminModule } from './admin/admin.module';
+import { AuthModule } from './auth/auth.module';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AdminModule,
+    AuthModule,
     RouterModule.forRoot([
-      { path: "", component: ProductListComponent },
+      { path: "", loadChildren: () => import('./product-list/product-list.module').then(m => m.ProductListModule) },
       { path: "products/:productId", component: ProductDetailsComponent },
-      { path: "cart", component: CartComponent },
+      { path: "cart", loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
       { path: 'shipping', component: ShippingComponent },
+      { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) }
     ])
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
-    ProductListComponent,
-    ProductAlertsComponent,
     ProductDetailsComponent,
-    CartComponent,
-    ShippingComponent
+    ShippingComponent,
   ],
   bootstrap: [AppComponent],
   providers: [CartService]
 })
-export class AppModule {}
+export class AppModule { }
 
 /*
 Copyright Google LLC. All Rights Reserved.
